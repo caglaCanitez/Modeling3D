@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  Modeling3D
+
+  Created by Cagla Canitez on 24.12.2022.
+  
+*/
+"login.3DModeling" = "3D-Modeling";
+"login.email" = "Email";
+"login.password" = "Password";
+"login.forgotPasswordButton" = "Forgot Password?";
+"login.loginButton" = "Log in";
+"login.doHaveAnAccount" = "Don't have an account?";
+"login.signUp" = "Sign Up";
