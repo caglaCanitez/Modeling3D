@@ -9,9 +9,11 @@ import UIKit
 
 extension UIViewController: AuthenticationDelegate {
     func routeToHome() {
-//        let vc = LoginViewController()
-//        vc.modalPresentationStyle = .fullScreen
-//        self.show(vc, sender: self)
+        let vc = HomeViewController()
+        let viewModel = Model3dViewModel()
+        vc.viewModel = viewModel
+        vc.modalPresentationStyle = .fullScreen
+        self.show(vc, sender: self)
     }
     
     func showAlert(title: String, message: String) {
