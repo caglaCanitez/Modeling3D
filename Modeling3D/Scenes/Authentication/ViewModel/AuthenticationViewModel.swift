@@ -26,13 +26,13 @@ class AuthenticationViewModel {
         }
     }
     
-    func userSignup(email: String, password: String, rePassword: String, verifyCode: String) {
+    func userSignup(email: String, password: String, rePassword: String) {
         if password != rePassword {
             self.delegate?.showAlert(title: "auth.passwordDontMatch".localize, message: "auth.passwordDontMatchMessage".localize)
             return
         }
         
-        AuthService.signup(email: email, password: password, verifyCode: rePassword) { [weak self] (success, errorMessage) in
+        AuthService.signup(email: email, password: password) { [weak self] (success, errorMessage) in
             if !success {
                 self?.delegate?.showAlert(title: "auth.unableToSignup".localize, message: errorMessage ?? "")
                 return

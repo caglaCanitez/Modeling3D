@@ -24,7 +24,7 @@ class AuthService {
         }
     }
     
-    static func signup(email: String, password: String, verifyCode: String, completion: @escaping (_ success: Bool, _ errorMessage: String?) -> ()) {
+    static func signup(email: String, password: String, completion: @escaping (_ success: Bool, _ errorMessage: String?) -> ()) {
         Auth.auth().createUser(withEmail: email, password: password) { (res, err) in
             
             if err != nil {
@@ -33,8 +33,14 @@ class AuthService {
             } else {
                 //guard let userId = res?.user.uid else { return }
                 print("signup res id: ", res?.user.uid)
-                UserDefaults.standard.set(true, forKey: "status")
-                completion(true, nil)
+                self.verifyEmailForSignup(user: res?.user) { success, errorMessage in
+                    if success {
+                        UserDefaults.standard.set(true, forKey: "status")
+                        completion(true, nil)
+                    } else {
+                        completion(false, errorMessage)
+                    }
+                }
             }
         }
     }
@@ -51,21 +57,18 @@ class AuthService {
         }
     }
     
-    static func verifyCodeForSignup(email: String, completion: @escaping (_ success: Bool, _ errorMessage: String?) -> ()) {
-//        let setting = AGCVerifyCodeSettings.init(action:AGCVerifyCodeAction.registerLogin, locale:nil, sendInterval:30)
-//        AGCEmailAuthProvider.requestVerifyCode(withEmail: email, settings: setting).onSuccess { (result) in
-//            completion(true, nil)
-//        }.onFailure{ (error) in
-//            completion(false, error.localizedDescription)
-//        }
-    }
-    
-    static func verifyCodeForResetPassword (email: String, completion: @escaping (_ success: Bool, _ errorMessage: String?) -> ()) {
-//        let setting = AGCVerifyCodeSettings.init(action:AGCVerifyCodeAction.resetPassword, locale:nil, sendInterval:30)
-//        AGCEmailAuthProvider.requestVerifyCode(withEmail:email, settings:setting).onSuccess{ (result) in
-//            completion(true, nil)
-//        }.onFailure{ (error) in
-//            completion(false, error.localizedDescription)
-//        }
+    static func verifyEmailForSignup(user: User?, completion: @escaping (_ success: Bool, _ errorMessage: String?) -> ()) {
+        if user != nil && !user!.isEmailVerified {
+            user!.sendEmailVerification(completion: { (error) in
+                if error != nil {
+                    completion(false, error?.localizedDescription ?? "")
+                    return
+                } else {
+                    completion(true, nil)
+                }
+            })
+          } else {
+            // Either the user is not available, or the user is already verified.
+          }
     }
 }

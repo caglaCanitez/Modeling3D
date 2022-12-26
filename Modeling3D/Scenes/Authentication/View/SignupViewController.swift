@@ -55,21 +55,6 @@ final class SignupViewController: UIViewController {
         return textField
     }()
     
-    private lazy var verifyCodeTextField: UITextField = {
-        let textField = UITextField()
-        textField.setDefault(iconName: "envelope.badge.fill", placeHolder: "signup.verifyCode".localize)
-        textField.rightView = self.verifyCodeButton
-        textField.rightViewMode = .always
-        return textField
-    }()
-    
-    private lazy var verifyCodeButton: UIButton = {
-        let button = UIButton()
-        button.setDefaultClearButton(buttonName: "signup.sendVerifyCode".localize, fontSize: 15)
-        button.addTarget(self, action: #selector(verifyCodeButtonAction), for: .touchUpInside)
-        return button
-    }()
-    
     private lazy var signupButton: UIButton = {
         let button = UIButton()
         button.setDefaultAppButton(buttonName: "signup.signupButton".localize, fontSize: 16)
@@ -125,7 +110,6 @@ final class SignupViewController: UIViewController {
         self.signupStackView.addArrangedSubview(self.userNameTextField)
         self.signupStackView.addArrangedSubview(self.passwordTextField)
         self.signupStackView.addArrangedSubview(self.rePasswordTextField)
-        self.signupStackView.addArrangedSubview(self.verifyCodeTextField)
         self.signupStackView.addArrangedSubview(self.signupButton)
         
         self.bottomStackView.addArrangedSubview(self.loginLabel)
@@ -145,7 +129,6 @@ final class SignupViewController: UIViewController {
         self.userNameTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         self.passwordTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         self.rePasswordTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        self.verifyCodeTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         self.signupButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         self.bottomStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -154,20 +137,14 @@ final class SignupViewController: UIViewController {
         
     }
     
-    @objc private func verifyCodeButtonAction(_ sender: UIButton) {
-        let email = self.emailTextField.text ?? ""
-        // TODO: Add verify methods
-    }
-    
     @objc private func signupButtonAction(_ sender: UIButton) {
         let email = self.emailTextField.text ?? ""
         let fullName = self.emailTextField.text ?? ""
         let userName = self.emailTextField.text ?? ""
         let password = self.emailTextField.text ?? ""
         let rePassword = self.emailTextField.text ?? ""
-        let verifyCode = self.emailTextField.text ?? ""
         
-        self.viewModel.userSignup(email: email, password: password, rePassword: rePassword, verifyCode: verifyCode)
+        self.viewModel.userSignup(email: email, password: password, rePassword: rePassword)
     }
     
     @objc private func loginButtonAction(_ sender: UIButton) {
