@@ -12,3 +12,19 @@
 "login.loginButton" = "Log in";
 "login.doHaveAnAccount" = "Don't have an account?";
 "login.signUp" = "Sign Up";
+
+"signup.email" = "Email";
+"signup.fullName" = "Full Name";
+"signup.userName" = "User Name";
+"signup.password" = "Password";
+"signup.repassword" = "Repassword";
+"signup.verifyCode" = "Verify Code";
+"signup.sendVerifyCode" = "Send Code";
+"signup.signupButton" = "Sign up";
+"signup.loginButton" = "Log in";
+
+"forgotPassword.email" = "Email";
+"forgotPassword.newPassword" = "New Password";
+"forgotPassword.verifyCode" = "Verify Code";
+"forgotPassword.sendVerifyCode" = "Send Code";
+"forgotPassword.resetPasswordButton" = "Reset Password";

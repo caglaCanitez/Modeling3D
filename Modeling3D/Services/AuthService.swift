@@ -17,7 +17,7 @@ class AuthService {
                 return
             } else {
                 //guard let userId = res?.user.uid else { return }
-                print("res id: ", res?.user.uid)
+                print("login res id: ", res?.user.uid)
                 UserDefaults.standard.set(true, forKey: "status")
                 completion(true, nil)
             }
@@ -32,6 +32,7 @@ class AuthService {
                 return
             } else {
                 //guard let userId = res?.user.uid else { return }
+                print("signup res id: ", res?.user.uid)
                 UserDefaults.standard.set(true, forKey: "status")
                 completion(true, nil)
             }

@@ -26,6 +26,21 @@ class AuthenticationViewModel {
         }
     }
     
+    func userSignup(email: String, password: String, rePassword: String, verifyCode: String) {
+        if password != rePassword {
+            self.delegate?.showError(title: "auth.passwordDontMatch".localize, message: "auth.passwordDontMatchMessage".localize)
+            return
+        }
+        
+        AuthService.signup(email: email, password: password, verifyCode: rePassword) { [weak self] (success, errorMessage) in
+            if !success {
+                self?.delegate?.showError(title: "auth.unableToSignup".localize, message: errorMessage ?? "")
+                return
+            }
+            self?.routeToHome()
+        }
+    }
+    
     private func routeToHome(){
         UserDefaults.standard.setValue(true, forKey: GeneralConstants.UserDefault.isLoginState)
         self.delegate?.routeToHome()

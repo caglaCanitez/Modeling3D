@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class LoginViewController: BaseViewController {
+final class LoginViewController: UIViewController {
     
     private lazy var topStackView: UIStackView = {
         let stackView = UIStackView()
@@ -103,7 +103,8 @@ final class LoginViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        applyConstraints()
+        self.view.backgroundColor = UIColor.background()
+        self.applyConstraints()
     }
     
     private func applyConstraints() {
@@ -130,7 +131,6 @@ final class LoginViewController: BaseViewController {
         self.topStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         self.topStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         
-//        self.appIconImageView.topAnchor.constraint(equalTo: self.topStackView.topAnchor).isActive = true
         self.appIconImageView.heightAnchor.constraint(equalToConstant: 220).isActive = true
         self.appIconImageView.widthAnchor.constraint(equalToConstant: 220).isActive = true
         
@@ -168,6 +168,9 @@ final class LoginViewController: BaseViewController {
     }
     
     @objc func signupButtonAction(_ sender: UIButton) {
-        
+        let vc = SignupViewController()
+        vc.viewModel = viewModel
+        vc.modalPresentationStyle = .fullScreen
+        self.show(vc, sender: self)
     }
 }
