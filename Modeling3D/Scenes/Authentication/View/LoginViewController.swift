@@ -157,7 +157,8 @@ final class LoginViewController: UIViewController {
     }
     
     @objc func forgotPasswordButtonAction(_ sender: UIButton) {
-        
+        let email = self.emailTextField.text ?? ""
+        self.viewModel.userUpdatePassword(email: email)
     }
     
     @objc func loginButtonAction(_ sender: UIButton) {

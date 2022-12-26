@@ -39,13 +39,16 @@ class AuthService {
         }
     }
     
-    static func updatePassword(email: String, newPassword: String, verifyCode: String, completion: @escaping (_ success: Bool, _ errorMessage: String?) -> ()) {
-//        AGCAuth.instance().resetPassword(withEmail:email, newPassword:newPassword, verifyCode: verifyCode)
-//        .onSuccess{ (result) in
-//            completion(true, nil)
-//        }.onFailure{ (error) in
-//            completion(false, error.localizedDescription)
-//        }
+    static func updatePassword(email: String, completion: @escaping (_ success: Bool, _ errorMessage: String?) -> ()) {
+        Auth.auth().sendPasswordReset(withEmail: email) { err in
+            if err != nil {
+                completion(false, err?.localizedDescription ?? "")
+                return
+            } else {
+                UserDefaults.standard.set(true, forKey: "status")
+                completion(true, nil)
+            }
+        }
     }
     
     static func verifyCodeForSignup(email: String, completion: @escaping (_ success: Bool, _ errorMessage: String?) -> ()) {

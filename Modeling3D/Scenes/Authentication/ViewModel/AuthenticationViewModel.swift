@@ -9,7 +9,7 @@ import Foundation
 
 protocol AuthenticationDelegate: AnyObject {
     func routeToHome()
-    func showError(title: String, message: String)
+    func showAlert(title: String, message: String)
 }
 
 
@@ -19,7 +19,7 @@ class AuthenticationViewModel {
     func userLogin(email: String, password: String) {
         AuthService.login(email: email, password: password) { [weak self] (success, errorMessage) in
             if !success {
-                self?.delegate?.showError(title: "auth.unableTologin".localize, message: errorMessage ?? "")
+                self?.delegate?.showAlert(title: "auth.unableTologin".localize, message: errorMessage ?? "")
                 return
             }
             self?.routeToHome()
@@ -28,16 +28,26 @@ class AuthenticationViewModel {
     
     func userSignup(email: String, password: String, rePassword: String, verifyCode: String) {
         if password != rePassword {
-            self.delegate?.showError(title: "auth.passwordDontMatch".localize, message: "auth.passwordDontMatchMessage".localize)
+            self.delegate?.showAlert(title: "auth.passwordDontMatch".localize, message: "auth.passwordDontMatchMessage".localize)
             return
         }
         
         AuthService.signup(email: email, password: password, verifyCode: rePassword) { [weak self] (success, errorMessage) in
             if !success {
-                self?.delegate?.showError(title: "auth.unableToSignup".localize, message: errorMessage ?? "")
+                self?.delegate?.showAlert(title: "auth.unableToSignup".localize, message: errorMessage ?? "")
                 return
             }
             self?.routeToHome()
+        }
+    }
+    
+    func userUpdatePassword(email: String) {
+        AuthService.updatePassword(email: email) { [weak self]  (success, errorMessage) in
+            if !success {
+                self?.delegate?.showAlert(title: "auth.unableToSendResetMail".localize, message: errorMessage ?? "")
+                return
+            }
+            self?.delegate?.showAlert(title: "auth.sendResetMail".localize, message: "auth.sendResetMailMessage".localize)
         }
     }
     

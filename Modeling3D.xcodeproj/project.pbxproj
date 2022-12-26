@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		056606FC29575FED00CF76CD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056606FB29575FED00CF76CD /* LoginViewController.swift */; };
 		056606FE2957610A00CF76CD /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056606FD2957610A00CF76CD /* SignupViewController.swift */; };
-		056607002957611800CF76CD /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056606FF2957611800CF76CD /* ForgotPasswordViewController.swift */; };
 		056607032957651100CF76CD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 056607022957651100CF76CD /* Localizable.strings */; };
 		056607062957654600CF76CD /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056607052957654600CF76CD /* StringExt.swift */; };
 		056607082957658900CF76CD /* UIFontExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056607072957658900CF76CD /* UIFontExt.swift */; };
@@ -23,7 +22,6 @@
 		0566071D2957B5FC00CF76CD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566071C2957B5FC00CF76CD /* Constants.swift */; };
 		05B2097729573C6500F81236 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05B2097629573C6500F81236 /* GoogleService-Info.plist */; };
 		05CD0C67295738F300EAC4A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD0C66295738F300EAC4A8 /* AppDelegate.swift */; };
-		05CD0C6B295738F300EAC4A8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD0C6A295738F300EAC4A8 /* BaseViewController.swift */; };
 		05CD0C6E295738F300EAC4A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05CD0C6C295738F300EAC4A8 /* Main.storyboard */; };
 		05CD0C70295738F400EAC4A8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05CD0C6F295738F400EAC4A8 /* Images.xcassets */; };
 		05CD0C73295738F400EAC4A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05CD0C71295738F400EAC4A8 /* LaunchScreen.storyboard */; };
@@ -33,7 +31,6 @@
 /* Begin PBXFileReference section */
 		056606FB29575FED00CF76CD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		056606FD2957610A00CF76CD /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
-		056606FF2957611800CF76CD /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		056607022957651100CF76CD /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		056607052957654600CF76CD /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 		056607072957658900CF76CD /* UIFontExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExt.swift; sourceTree = "<group>"; };
@@ -48,7 +45,6 @@
 		05B2097629573C6500F81236 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		05CD0C63295738F300EAC4A8 /* Modeling3D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Modeling3D.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05CD0C66295738F300EAC4A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		05CD0C6A295738F300EAC4A8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		05CD0C6D295738F300EAC4A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05CD0C6F295738F400EAC4A8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		05CD0C72295738F400EAC4A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -92,7 +88,6 @@
 			children = (
 				056606FB29575FED00CF76CD /* LoginViewController.swift */,
 				056606FD2957610A00CF76CD /* SignupViewController.swift */,
-				056606FF2957611800CF76CD /* ForgotPasswordViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -191,17 +186,8 @@
 			isa = PBXGroup;
 			children = (
 				0566071B2957B5E900CF76CD /* Constants */,
-				05CD0C7C295739F800EAC4A8 /* Controller */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		05CD0C7C295739F800EAC4A8 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				05CD0C6A295738F300EAC4A8 /* BaseViewController.swift */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		5942A979D7DAE080AFF3C3D8 /* Frameworks */ = {
@@ -344,9 +330,7 @@
 				0566071029576FE700CF76CD /* UIButtonExt.swift in Sources */,
 				056606FC29575FED00CF76CD /* LoginViewController.swift in Sources */,
 				0566070C29576C5800CF76CD /* UIColorExt.swift in Sources */,
-				056607002957611800CF76CD /* ForgotPasswordViewController.swift in Sources */,
 				056607142957AE2300CF76CD /* AuthService.swift in Sources */,
-				05CD0C6B295738F300EAC4A8 /* BaseViewController.swift in Sources */,
 				056606FE2957610A00CF76CD /* SignupViewController.swift in Sources */,
 				0566071A2957B1F400CF76CD /* UIViewControllerExt.swift in Sources */,
 				056607082957658900CF76CD /* UIFontExt.swift in Sources */,
