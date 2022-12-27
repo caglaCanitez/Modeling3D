@@ -134,3 +134,6 @@ final class ProgressAlertView: NSObject {
     }
 }
 
+// TODO: fix alert views
+// TODO: add preview scene and unzip model
+// TODO: after login, open always home page

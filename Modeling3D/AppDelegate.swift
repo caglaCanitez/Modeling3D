@@ -17,10 +17,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
-//        var vc: UIViewController!
-        var vc = LoginViewController()
-        var viewModel = AuthenticationViewModel()
-        vc.viewModel = viewModel
+        var vc: UIViewController!
+        
+        let isLogin = UserDefaults.standard.bool(forKey: GeneralConstants.UserDefault.isLoginState)
+        if isLogin {
+            let home = HomeViewController()
+            let viewModel = Model3dViewModel()
+            home.viewModel = viewModel
+            vc = home
+        } else {
+            let login = LoginViewController()
+            let viewModel = AuthenticationViewModel()
+            login.viewModel = viewModel
+            vc = login
+        }
         
         self.window?.rootViewController = vc
         self.window?.makeKeyAndVisible()
