@@ -66,22 +66,17 @@ final class ProgressAlertView: NSObject {
     }
     
     private func applyConstraints() {
-//        UIView.animate(withDuration: 0.25) {
-//            self.targetView.alpha = 0.6
-//        }
-        
         targetView.addSubview(alertView)
         alertView.addSubview(titleLabel)
         alertView.addSubview(progressBar)
         alertView.addSubview(completeLabel)
         alertView.addSubview(cancelButton)
         
-        
         self.alertView.translatesAutoresizingMaskIntoConstraints = false
         self.alertView.centerXAnchor.constraint(equalTo: self.targetView.centerXAnchor).isActive = true
         self.alertView.centerYAnchor.constraint(equalTo: self.targetView.centerYAnchor).isActive = true
         self.alertView.heightAnchor.constraint(equalTo: self.targetView.heightAnchor, multiplier: 0.2).isActive = true
-        self.alertView.widthAnchor.constraint(equalTo: self.targetView.widthAnchor, multiplier: 0.2).isActive = true
+        self.alertView.widthAnchor.constraint(equalTo: self.targetView.widthAnchor, multiplier: 0.7).isActive = true
         
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.titleLabel.topAnchor.constraint(equalTo: self.alertView.topAnchor, constant: 16).isActive = true
@@ -95,11 +90,13 @@ final class ProgressAlertView: NSObject {
         self.progressBar.trailingAnchor.constraint(equalTo: self.alertView.trailingAnchor, constant: -20).isActive = true
         self.progressBar.heightAnchor.constraint(equalToConstant: 10).isActive = true
         
+        self.completeLabel.translatesAutoresizingMaskIntoConstraints = false
         self.completeLabel.topAnchor.constraint(equalTo: self.progressBar.bottomAnchor, constant: 20).isActive = true
         self.completeLabel.leadingAnchor.constraint(equalTo: self.alertView.leadingAnchor).isActive = true
         self.completeLabel.trailingAnchor.constraint(equalTo: self.alertView.trailingAnchor).isActive = true
         self.completeLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
 
+        self.cancelButton.translatesAutoresizingMaskIntoConstraints = false
         self.cancelButton.topAnchor.constraint(equalTo: self.completeLabel.bottomAnchor, constant: 20).isActive = true
         self.cancelButton.leadingAnchor.constraint(equalTo: self.alertView.leadingAnchor).isActive = true
         self.cancelButton.trailingAnchor.constraint(equalTo: self.alertView.trailingAnchor).isActive = true
@@ -133,7 +130,3 @@ final class ProgressAlertView: NSObject {
         self.alertView.removeFromSuperview()
     }
 }
-
-// TODO: fix alert views
-// TODO: add preview scene and unzip model
-// TODO: after login, open always home page

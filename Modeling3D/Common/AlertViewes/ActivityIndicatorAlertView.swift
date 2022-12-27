@@ -29,8 +29,8 @@ final class ActivityIndicatorAlertView: NSObject {
     }()
     
     private lazy var activityIndicator: UIActivityIndicatorView = {
-        let activityIndicator = UIActivityIndicatorView(style: .medium)
-        self.activityIndicator.startAnimating()
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.style = .medium
         return activityIndicator
     }()
     
@@ -54,6 +54,7 @@ final class ActivityIndicatorAlertView: NSObject {
         super.init()
         self.targetView = viewController.view
         self.applyConstraints()
+        self.activityIndicator.startAnimating()
     }
     
     private func applyConstraints() {
@@ -65,13 +66,13 @@ final class ActivityIndicatorAlertView: NSObject {
         self.alertView.translatesAutoresizingMaskIntoConstraints = false
         self.alertView.centerXAnchor.constraint(equalTo: self.targetView.centerXAnchor).isActive = true
         self.alertView.centerYAnchor.constraint(equalTo: self.targetView.centerYAnchor).isActive = true
-        self.targetView.heightAnchor.constraint(equalTo: self.targetView.heightAnchor, multiplier: 0.15).isActive = true
-        self.targetView.widthAnchor.constraint(equalTo: self.targetView.widthAnchor, multiplier: 0.9).isActive = true
+        self.alertView.heightAnchor.constraint(equalTo: self.targetView.heightAnchor, multiplier: 0.15).isActive = true
+        self.alertView.widthAnchor.constraint(equalTo: self.targetView.widthAnchor, multiplier: 0.7).isActive = true
         
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.titleLabel.topAnchor.constraint(equalTo: self.alertView.topAnchor, constant: 16).isActive = true
         self.titleLabel.leadingAnchor.constraint(equalTo: self.alertView.leadingAnchor).isActive = true
-        self.titleLabel.trailingAnchor.constraint(equalTo: self.titleLabel.trailingAnchor).isActive = true
+        self.titleLabel.trailingAnchor.constraint(equalTo: self.alertView.trailingAnchor).isActive = true
         self.titleLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         self.activityIndicator.translatesAutoresizingMaskIntoConstraints = false

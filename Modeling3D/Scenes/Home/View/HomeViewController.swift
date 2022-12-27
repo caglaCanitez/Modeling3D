@@ -10,13 +10,12 @@ import PhotosUI
 import Modeling3dKit
 
 final class HomeViewController: UIViewController, PHPickerViewControllerDelegate, Model3dDelegate {
-    let layout = UICollectionViewLayout()
     let icon = (UIImage(systemName: "plus")!.withTintColor(UIColor.purple(), renderingMode: .alwaysOriginal))
     
     private lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(Model3DViewCell.self, forCellWithReuseIdentifier: "Cell")
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.backgroundColor = .clear
+        collectionView.register(Model3DViewCell.self, forCellWithReuseIdentifier: "Cell")
         return collectionView
     }()
     
@@ -149,5 +148,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.viewModel = viewModel
 
         return cell
-      }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print()
+    }
 }
