@@ -66,7 +66,7 @@ final class ActivityIndicatorAlertView: NSObject {
         self.alertView.translatesAutoresizingMaskIntoConstraints = false
         self.alertView.centerXAnchor.constraint(equalTo: self.targetView.centerXAnchor).isActive = true
         self.alertView.centerYAnchor.constraint(equalTo: self.targetView.centerYAnchor).isActive = true
-        self.alertView.heightAnchor.constraint(equalTo: self.targetView.heightAnchor, multiplier: 0.15).isActive = true
+        self.alertView.heightAnchor.constraint(equalTo: self.targetView.heightAnchor, multiplier: 0.18).isActive = true
         self.alertView.widthAnchor.constraint(equalTo: self.targetView.widthAnchor, multiplier: 0.7).isActive = true
         
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -80,7 +80,7 @@ final class ActivityIndicatorAlertView: NSObject {
         self.activityIndicator.centerXAnchor.constraint(equalTo: self.alertView.centerXAnchor).isActive = true
         
         self.cancelButton.translatesAutoresizingMaskIntoConstraints = false
-        self.cancelButton.topAnchor.constraint(equalTo: self.activityIndicator.bottomAnchor, constant: 20).isActive = true
+        self.cancelButton.topAnchor.constraint(equalTo: self.activityIndicator.bottomAnchor, constant: 30).isActive = true
         self.cancelButton.leadingAnchor.constraint(equalTo: self.alertView.leadingAnchor).isActive = true
         self.cancelButton.trailingAnchor.constraint(equalTo: self.alertView.trailingAnchor).isActive = true
         self.cancelButton.bottomAnchor.constraint(equalTo: self.alertView.bottomAnchor).isActive = true

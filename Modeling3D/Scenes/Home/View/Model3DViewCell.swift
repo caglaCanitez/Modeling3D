@@ -115,4 +115,10 @@ final class Model3DViewCell: UICollectionViewCell, Model3dDelegate {
         self.popupMenuButton.trailingAnchor.constraint(equalTo: self.model3DStackView.trailingAnchor).isActive = true
     }
     
+//    func showAlert(title: String, message: String) {
+//        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+//        alert.addAction(UIAlertAction(title: "alert.click".localize, style: UIAlertAction.Style.default, handler: nil))
+//        self.showDetailViewController(alert, sender: self)
+//    }
+    
 }

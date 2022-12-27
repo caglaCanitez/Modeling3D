@@ -106,6 +106,8 @@ final class ProgressAlertView: NSObject {
     
     @objc private func didTapCancelButton() {
         if (!isUpload) { //false
+            // There are some issues caused by cancelDownloadTask of Modeling3dKit.
+            // When canceled download, download progress is ongoing.
            Modeling3dReconstructTask.sharedManager().cancelDownloadTask(withTaskId: taskId) { retCode, retMsg in
                print("cancelDownloadTask retCode:", retCode)
                print("cancelDownloadTask retMsg:", retMsg)

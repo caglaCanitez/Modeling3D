@@ -7,11 +7,12 @@
 
 import Foundation
 import Modeling3dKit
+import ZIPFoundation
 
 typealias VoidHandler = () -> Void
 
 protocol Model3dDelegate: AnyObject {
-    
+//    func showAlert(title: String, message: String)
 }
 
 class Model3dViewModel {
@@ -112,13 +113,15 @@ class Model3dViewModel {
     }
     
     func download(viewController: UIViewController) {
-        Modeling3dReconstructTask.sharedManager().queryRestriction(withTaskId: self.self.model[self.currentCellIndex!].taskId) { restrictFlag in
+        Modeling3dReconstructTask.sharedManager().queryRestriction(withTaskId: self.model[self.currentCellIndex!].taskId) { restrictFlag in
             if (restrictFlag.rawValue != 1) {
                 let alert = ProgressAlertView(on: viewController, alertTitle: "Download", isUpload: false, taskId: self.model[self.currentCellIndex!].taskId)
                 
-                Modeling3dReconstructTask.sharedManager().downloadTask(withTaskId: self.self.model[self.currentCellIndex!].taskId, downloadFormat: Modeling3dKit.TaskDownloadFormat.OBJ) {
+                Modeling3dReconstructTask.sharedManager().downloadTask(withTaskId: self.model[self.currentCellIndex!].taskId, downloadFormat: Modeling3dKit.TaskDownloadFormat.OBJ) {
                     print("downloadTask success...")
                     alert.removeAlertView()
+                    // There are some issues caused by downloadTask method of Modeling3dKit.
+                    // That's why alertview does not disappear.
                 } progressHandler: { progressValue in
                     print("downloadTask progressValue:", progressValue)
                     alert.updateProgress(progressValue: progressValue)
@@ -136,11 +139,57 @@ class Model3dViewModel {
     }
     
     func preview() {
-        Modeling3dReconstructTask.sharedManager().previewTask(withTaskId: self.model[currentCellIndex!].taskId, successHandler: {
-            
-        }, failureHandler: { retCode, retMsg in
-            print("Preview retCode: ", retCode)
-            print("Preview retMsg: ", retMsg)
-        })
+        var directory: URL {
+            get {
+                return FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0].appendingPathComponent("Caches").appendingPathComponent("dataTask")
+                    .appendingPathComponent(self.model[self.currentCellIndex!].taskId).appendingPathComponent("downloadModel")
+            }
+        }
+        print("directory: ", directory)
+        let lastPath = directory.appendingPathComponent("model.zip")
+        print("lastPath: ", lastPath)
+        
+        if !FileManager.default.fileExists(atPath: lastPath.path) {
+//            self.delegate?.showAlert(title: "Download Error", message: "Not downloaded. Please download first.")
+            print("not downloaded.")
+        } else {
+            let destinationURL = directory.appendingPathComponent("model")
+            print("destinationURL: ", destinationURL)
+            let mtlURL = destinationURL.appendingPathComponent("mesh_texture.mtl")
+            print("mtlURL: ", mtlURL)
+            if !FileManager.default.fileExists(atPath: destinationURL.path) {
+                do {
+                    try FileManager().createDirectory(at: destinationURL, withIntermediateDirectories: true, attributes: nil)
+                    try FileManager().unzipItem(at: lastPath, to: destinationURL)
+                    
+                    self.deleteMtlFile(mtlURL: mtlURL)
+                    self.reWrite(mtlURL: mtlURL)
+                } catch {
+                    print("Extraction of ZIP archive failed with error:\(error)")
+                }
+            }
+            self.deleteMtlFile(mtlURL: mtlURL)
+            self.reWrite(mtlURL: mtlURL)
+        }
+    }
+    
+    func deleteMtlFile(mtlURL: URL) {
+        do {
+            try FileManager.default.removeItem(atPath: mtlURL.path)
+            print("File deleted")
+            return
+        }
+        catch {
+            print("Error")
+        }
+    }
+    
+    func reWrite(mtlURL: URL) {
+        let outString = "newmtl material\nmap_Kd mesh_texture_material_map_Kd.jpg\n"
+        do {
+            try outString.write(to: mtlURL, atomically: true, encoding: .utf8)
+        } catch {
+            assertionFailure("Failed writing to URL: \(mtlURL), Error: " + error.localizedDescription)
+        }
     }
 }
