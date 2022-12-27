@@ -18,6 +18,7 @@ protocol Model3dDelegate: AnyObject {
 class Model3dViewModel {
     weak var delegate: Model3dDelegate?
     var model = [Modeling3dReconstructTaskModel]()
+    var modelURL = [URL]()
     var currentCellIndex: Int?
     var actionTableReload: VoidHandler?
     
@@ -145,31 +146,28 @@ class Model3dViewModel {
                     .appendingPathComponent(self.model[self.currentCellIndex!].taskId).appendingPathComponent("downloadModel")
             }
         }
-        print("directory: ", directory)
         let lastPath = directory.appendingPathComponent("model.zip")
-        print("lastPath: ", lastPath)
         
         if !FileManager.default.fileExists(atPath: lastPath.path) {
 //            self.delegate?.showAlert(title: "Download Error", message: "Not downloaded. Please download first.")
             print("not downloaded.")
         } else {
             let destinationURL = directory.appendingPathComponent("model")
-            print("destinationURL: ", destinationURL)
             let mtlURL = destinationURL.appendingPathComponent("mesh_texture.mtl")
-            print("mtlURL: ", mtlURL)
+            let model = destinationURL.appendingPathComponent("mesh_texture.obj")
+            self.modelURL.insert(model, at: self.currentCellIndex!)
+            
             if !FileManager.default.fileExists(atPath: destinationURL.path) {
                 do {
                     try FileManager().createDirectory(at: destinationURL, withIntermediateDirectories: true, attributes: nil)
                     try FileManager().unzipItem(at: lastPath, to: destinationURL)
-                    
-                    self.deleteMtlFile(mtlURL: mtlURL)
-                    self.reWrite(mtlURL: mtlURL)
                 } catch {
                     print("Extraction of ZIP archive failed with error:\(error)")
                 }
             }
             self.deleteMtlFile(mtlURL: mtlURL)
             self.reWrite(mtlURL: mtlURL)
+            
         }
     }
     

@@ -90,12 +90,8 @@ final class Model3DViewCell: UICollectionViewCell, Model3dDelegate {
         let delete = UIAction(title: "Delete", image: nil) { (action) in
             self.viewModel.delete()
         }
-        
-        let preview = UIAction(title: "Preview", image: nil) { (action) in
-            self.viewModel.preview()
-        }
 
-        let menu = UIMenu(options: .displayInline, children: [query, download, delete, preview])
+        let menu = UIMenu(options: .displayInline, children: [query, download, delete])
         self.popupMenuButton.menu = menu
         self.popupMenuButton.showsMenuAsPrimaryAction = true
         

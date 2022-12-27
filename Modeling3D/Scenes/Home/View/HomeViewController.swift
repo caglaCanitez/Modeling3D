@@ -151,6 +151,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print()
+        self.viewModel.preview()
+        let preview = PreviewViewController(modelURL: self.viewModel.modelURL[indexPath.row])
+        self.show(preview, sender: self)
+
     }
 }

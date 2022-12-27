@@ -28,6 +28,7 @@
 		0566072C295A451C00CF76CD /* Modeling3dKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05660729295A44FC00CF76CD /* Modeling3dKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05660730295A493100CF76CD /* ProgressAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0566072F295A493100CF76CD /* ProgressAlertView.swift */; };
 		05660732295A495D00CF76CD /* ActivityIndicatorAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05660731295A495D00CF76CD /* ActivityIndicatorAlertView.swift */; };
+		0584A81D295B576500E27D55 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0584A81C295B576500E27D55 /* PreviewViewController.swift */; };
 		05B2097729573C6500F81236 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05B2097629573C6500F81236 /* GoogleService-Info.plist */; };
 		05CD0C67295738F300EAC4A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD0C66295738F300EAC4A8 /* AppDelegate.swift */; };
 		05CD0C6E295738F300EAC4A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05CD0C6C295738F300EAC4A8 /* Main.storyboard */; };
@@ -71,6 +72,7 @@
 		05660729295A44FC00CF76CD /* Modeling3dKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Modeling3dKit.framework; sourceTree = "<group>"; };
 		0566072F295A493100CF76CD /* ProgressAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressAlertView.swift; sourceTree = "<group>"; };
 		05660731295A495D00CF76CD /* ActivityIndicatorAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorAlertView.swift; sourceTree = "<group>"; };
+		0584A81C295B576500E27D55 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		05B2097629573C6500F81236 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		05CD0C63295738F300EAC4A8 /* Modeling3D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Modeling3D.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05CD0C66295738F300EAC4A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 			children = (
 				0566071F295A169300CF76CD /* HomeViewController.swift */,
 				05660725295A1C0400CF76CD /* Model3DViewCell.swift */,
+				0584A81C295B576500E27D55 /* PreviewViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				056607062957654600CF76CD /* StringExt.swift in Sources */,
 				05660720295A169300CF76CD /* HomeViewController.swift in Sources */,
 				05CD0C67295738F300EAC4A8 /* AppDelegate.swift in Sources */,
+				0584A81D295B576500E27D55 /* PreviewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
